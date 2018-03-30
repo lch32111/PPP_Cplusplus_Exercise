@@ -1,5 +1,23 @@
 #include "Roman_int.h"
 
+bool canRoman(string s)
+{
+	if (s.size() == 0) return false;
+	
+	for (size_t i = 0; i < s.size(); ++i)
+		if (islower(s[i]))
+			return false;
+
+	return true;
+}
+
+bool canRoman(int v)
+{
+	if (v <= 0) return false;
+	
+	return true;
+}
+
 unsigned int Roman_char2int(const char c)
 {
 	for (size_t i = 0; i < Roman_tbl_size; ++i)

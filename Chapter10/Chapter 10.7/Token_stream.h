@@ -2,6 +2,7 @@
 #define TOKEN_STREAM_H
 
 #include "Token.h"
+#include "Roman_int.h"
 
 const char number = '8';    // t.kind == number means that t is a number Token
 const char quit = 'q';

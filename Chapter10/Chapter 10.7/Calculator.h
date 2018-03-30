@@ -17,7 +17,8 @@ Revised by BS August 2004
 Originally written by BS
 (bs@cs.tamu.edu) Spring 2004.
 ----------------------------
-Revised by Chan March 2018
+Revised by Chan March 28 2018
+Revised by Chan March 30 2018 + added Roman integer system
 
 This program implements a basic expression calculator.
 input from cin; output to cout.
@@ -77,6 +78,8 @@ newline
 You can modify the keyworkd for Print, Quit, Help in the Token_Stream hedaer file.
 Input comes from cin thorugh the Token_stream called ts.
 
+You can use Roman integer system, using the uppercase characters.
+
 Class
 Token_stream - Token : Token_stream and Token are used to take user inputs
 Variable + vector<Variable> : Variable are used to save variables and retrieve the variables
@@ -101,12 +104,13 @@ private:
 	double suffix();
 	double term();
 	double expression();
-
+	
 	void clean_up_mess();
 	void show_help();
 	
 	Token_stream ts;
 public:
+	Calculator();
 	double define_name(string var, double val, bool convert);
 	void calculate();
 };

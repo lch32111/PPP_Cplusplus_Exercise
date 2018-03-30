@@ -3,6 +3,8 @@
 
 #include "std_lib_facilities.h"
 
+bool canRoman(string s);
+bool canRoman(int v);
 unsigned int Roman_char2int(const char c);
 char Roman_int2char(const unsigned int v);
 unsigned int Roman_string2int(const string& s);
@@ -20,7 +22,6 @@ public:
 	Roman_int(string s)
 		: m_number(Roman_string2int(s)), m_numberString(s) { }
 		
-	
 	int as_int() const { return m_number; }
 	string as_string() const { return m_numberString; }
 private:

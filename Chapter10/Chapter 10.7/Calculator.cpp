@@ -1,5 +1,17 @@
 #include "Calculator.h"
 
+Calculator::Calculator()
+{
+	// ROMAN INTEGER
+	define_name("I", 1, false);
+	define_name("V", 5, false);
+	define_name("X", 10, false);
+	define_name("L", 50, false);
+	define_name("C", 100, false);
+	define_name("D", 500, false);
+	define_name("M", 1000, false);
+}
+
 double Calculator::define_name(string var, double val, bool convert)
 // add (var,val) to symbol_table
 {
@@ -360,5 +372,6 @@ void Calculator::show_help()
 		<< "If you declare a variable by const, you can't change the value of the number.\n"
 		<< "If not, you can change the value. e.g., a = 5\n"
 		<< "You can use factorial and float modulo!\n"
+		<< "You can use Roman integer, using the uppercase characters. "
 		<< "To exix this program, enter the 'quit'\n";
 }

@@ -1,5 +1,4 @@
 #include "std_lib_facilities.h"
-#include <cmath>
 #include "Calculator.h"
 
 int main()

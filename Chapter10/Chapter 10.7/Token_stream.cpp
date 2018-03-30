@@ -71,6 +71,7 @@ Token Token_stream::get()
 			else if (s == quitkey) return Token(quit);
 			else if (s == constantkey) return Token(Uconst);
 			else if (s == helpkey) return Token(help);
+			else if (canRoman(s)) return Token(number, Roman_string2int(s));
 			return Token{ name,s };
 		}
 		error("Bad token!!\n");
