@@ -1,6 +1,6 @@
 #include "std_lib_facilities.h"
 
-vector<string> notString =
+vector<string> notString = 
 {
 	"ain t", "aren t", "isn t", "wasn t", "weren t",
 	"don t", "doesn t", "didn t",
@@ -162,8 +162,8 @@ Punct_stream::operator bool()
 void Punct_stream::changenotsentence(string &s)
 {
 	stringstream check(s);
-	stringstream output;
-
+    stringstream output;
+	
 	vector<string> words;
 	string temp;
 	while (check >> temp)
@@ -176,7 +176,7 @@ void Punct_stream::changenotsentence(string &s)
 		leftword = words[i];
 		rightword = words[i + 1];
 
-		for (int j = 0; j < notString.size(); ++j)
+		for(int j = 0; j < notString.size(); ++j)
 			if (leftword + ' ' + rightword == notString[j])
 			{
 				stringstream ss;
@@ -203,14 +203,43 @@ void Punct_stream::changenotsentence(string &s)
 
 int main()
 {
-	Punct_stream ps{ cin };
+	string address;
+	ifstream infile;
+	ofstream outfile;
+
+	cout << "Enter the input file address : ";
+	cin >> address;
+	infile.open(address);
+	cout << "Enter the output file address : ";
+	cin >> address;
+	outfile.open(address);
+
+	if (!infile || !outfile)
+		cerr << "Something error happend in opening file\n";
+
+	Punct_stream ps{ infile };
 	ps.case_sensitive(false);
-	ps.whitespace("-.;,?\'"); // note \" means " in string
+	ps.whitespace("-.:();,?\'"); 
 
+	vector<string> dictionary;
 	string temp;
-	ps.readlineWithhypen(temp);
-	cout << temp << '\n';
+	while (ps.readlineWithhypen(temp))
+	{
+		ps.changenotsentence(temp);
 
-	ps.changenotsentence(temp);
-	cout << temp << '\n';
+		stringstream ss;
+		ss << temp;
+
+		string temp2;
+		while (ss >> temp2)
+			dictionary.push_back(temp2);
+	}
+	sort(dictionary.begin(), dictionary.end());
+
+	for (int i = 0; i < dictionary.size(); ++i)
+		if (i == 0 || dictionary[i] != dictionary[i - 1])
+			outfile << dictionary[i] << '\n';
+
+	infile.close();
+	outfile.close();
 }
